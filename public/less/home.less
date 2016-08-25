@@ -1,0 +1,158 @@
+#home-navtab {
+    position: relative;
+
+    .nav-tabs {
+        border-bottom: transparent;
+    }
+
+    .tab-content {
+        /* border-top: 2px solid #00a99d; */
+    }
+
+    .nav.nav-tabs .active .navtab-head, .nav.nav-tabs .active .navtab-head h2{
+        background: #00a99d;
+        color: #fff !important;
+        /* border: 1px solid #00a99d !important; */
+    }
+
+    .navtab-head {
+        border-radius: 0 !important;
+        border: 1px solid #ccc !important;
+        h2 {
+            text-transform: uppercase;
+            color: #6f6f6e;
+            font-size: 16px;
+            padding: 5px 0 0px 0;
+            text-align: center;
+        }
+    }
+
+    .custom-control-slider-product {
+        border: 1px solid #ccc;
+        display: block;
+        padding-top: 9px;
+        padding-bottom: 5px;
+        text-align: center;
+        font-size: 20px;
+        background: #fff;
+    }
+
+    .product-item {
+        .top-container {
+            display: inline-block;
+            padding-bottom: 10px;
+            font-weight: bold;
+
+            i.fa {
+                font-size: 15px;
+                color: #f44f00;
+            }
+        }
+    }
+}
+
+// Slider video
+#video-slider-flex {
+    .video-item {
+        position: relative;
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            padding: 8px;
+        }
+        .icon-play {
+            font-size: 55px;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+    }
+}
+
+.hp-slider-controls {
+    position: static !important;
+    .custom-control-slider-product {
+        position: absolute;
+        top: 40%;
+        z-index: 2;
+    }
+    .custom-control-slider-product.prev {
+        left: 20px;
+    }
+    .custom-control-slider-product.next {
+        right: 20px;
+    }
+}
+
+// Phần dành cho các khôi điện thoại, tablet, phone trên trang chủ
+.product-device-tab {
+    li {
+        a {
+            border-radius: 0!important;
+            border: 1px solid #ccc!important;
+            color: #4c4c4c;
+        }
+    }
+    li.active {
+        a {
+            background: #00a99d;
+            color: #fff!important;
+        }
+
+        a:hover {
+            background: #00a99d;
+            color: #fff!important;
+        }
+
+        a:focus {
+            background: #00a99d;
+            color: #fff!important;
+        }
+    }
+    .main-tab.phone, .main-tab.phone:hover, .main-tab.phone:active, .main-tab.phone:focus {
+        background: #ff4e3c;
+        border: 1px solid transparent !important;
+        color: #fff;
+    }
+    .main-tab.tablet, .main-tab.tablet:hover, .main-tab.tablet:active, .main-tab.tablet:focus {
+        background: #f0ad4e;
+        border: 1px solid transparent !important;
+        color: #fff;
+    }
+    .main-tab.laptop, .main-tab.laptop:hover, .main-tab.laptop:active, .main-tab.laptop:focus {
+        background: #428bca;
+        border: 1px solid transparent !important;
+        color: #fff;
+    }
+    .main-tab.camera, .main-tab.camera:hover, .main-tab.camera:active, .main-tab.camera:focus {
+        background: #d9534f;
+        border: 1px solid transparent !important;
+        color: #fff;
+    }
+}
+.product-device-tab.nav-tabs {
+    border-bottom: 1px transparent;
+}
+.home-device-block {
+    .custom-control-slider-product {
+        position: absolute;
+        top: 40%;
+        font-size: 20px;
+        border: 1px solid #ccc;
+        background: #fff;
+        z-index: 10;
+        width: 30px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+    }
+    .custom-control-slider-product.prev {
+        left: 20px;
+    }
+    .custom-control-slider-product.next {
+        right: 20px;
+    }
+}

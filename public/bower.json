@@ -1,0 +1,40 @@
+{
+  "name": "nguyenhatech",
+  "authors": [
+    "justin <cong.itsoft@gmail.com>"
+  ],
+  "description": "Auto load js,css resource",
+  "main": "bower.json",
+  "moduleType": [],
+  "keywords": [
+    "nguyenhats"
+  ],
+  "license": "MIT",
+  "homepage": "http://nguyenhats.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bxslider-4": "bx-slider.js#^4.2.5",
+    "handlebars": "^4.0.5",
+    "jquery-tokeninput": "^1.7.0",
+    "jquery.tagsinput": "^1.3.6",
+    "typeahead.js": "^0.11.1",
+    "isMobile": "^0.4.0",
+    "owl.carousel": "^2.0.0-beta.3",
+    "select2": "^4.0.2",
+    "dropzone": "^4.3.0",
+    "x-editable": "^1.5.1",
+    "flexslider": "^2.6.0",
+    "highcharts": "^4.2.4",
+    "bootstrap-datepicker": "^1.6.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+    "jscroll": "^2.3.5",
+    "jquery-infinite-scroll": "^2.1.0"
+  }
+}

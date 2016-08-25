@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /redirect/product/
+Disallow: /search/
+Disallow: /*?*
+Disallow: /ajax/
+Disallow: /tag/
+Disallow: /tags/

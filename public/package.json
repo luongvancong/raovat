@@ -1,0 +1,23 @@
+{
+  "name": "giaca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fancybox": "^3.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-csso": "^2.0.0",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-uglifycss": "^1.0.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-debug": "^2.1.2"
+  }
+}
