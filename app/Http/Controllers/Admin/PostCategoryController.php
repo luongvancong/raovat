@@ -33,7 +33,8 @@ class PostCategoryController extends AdminController
 
 
 	public function getCreate() {
-		return view('admin/post_categories/create');
+		$data = $this->postCategory->getAllCategories();
+		return view('admin/post_categories/create',compact('data'));
 	}
 
 	public function postCreate(AdminPostCategoryFormRequest $request) {
@@ -47,8 +48,9 @@ class PostCategoryController extends AdminController
 	}
 
 	public function getEdit($id) {
+		$data = $this->postCategory->getAllCategories();
 		$category = $this->postCategory->getById($id);
-		return view('admin/post_categories/edit', compact('category'));
+		return view('admin/post_categories/edit', compact('category','data'));
 	}
 
 	public function postEdit($id, AdminPostCategoryFormRequest $request) {
@@ -63,7 +65,10 @@ class PostCategoryController extends AdminController
 
 	public function getDelete($id) {
 		$category = $this->postCategory->getById($id);
-
+		$child = $category->getChild;
+		foreach ($child as $key => $item_child) {
+		    $item_child->delete();
+		}
 		if($category->delete()) {
 			return redirect()->back()->with('success', trans('general.messages.delete_success'));
 		}

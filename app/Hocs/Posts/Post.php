@@ -116,8 +116,11 @@ class Post extends Model
 		return $this->belongsToMany('Nht\Hocs\Tags\Tag', 'posts_tags', 'post_id');
 	}
 
-
 	public function comments() {
 		return $this->hasMany('Nht\Hocs\Posts\PostComment', 'post_id');
+	}
+
+	public function post_image(){
+		return $this->hasMany('Nht\Hocs\Posts\PostImage', 'post_id');
 	}
 }

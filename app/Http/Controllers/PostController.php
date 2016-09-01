@@ -3,25 +3,32 @@
 use Illuminate\Http\Request;
 
 use Nht\Http\Requests;
+use Nht\Http\Requests\UserPostFormRequest;
+
 use Nht\Http\Controllers\FrontendController;
 
 use Nht\Hocs\Posts\PostRepository;
 use Nht\Hocs\Posts\DbPostRepository;
 
+use Nht\Hocs\Users\UserRepository;
+
 use Nht\Hocs\PostCategories\PostCategoryRepository;
+use Nht\Hocs\Cities\CityRepository;
 
 use Nht\Hocs\Products\ProductRepository;
-
+use DB;
 use OpenGraph;
 
 class PostController extends FrontendController
 {
 	public function __construct(DbPostRepository $post, ProductRepository $product,
-	                            PostCategoryRepository $postCategory) {
+	                            PostCategoryRepository $postCategory, CityRepository $postCity,UserRepository $user) {
 		parent::__construct();
 		$this->post         = $post;
 		$this->product      = $product;
 		$this->postCategory = $postCategory;
+		$this->postCity = $postCity;
+		$this->user = $user;
 	}
 
 	public function getIndex(Request $request) {
@@ -174,4 +181,21 @@ class PostController extends FrontendController
 
 		return view('frontend/post/amp', compact('post', 'category' ,'relatedPosts', 'products', 'mostViewPosts', 'newestPosts', 'sameCategoryPosts'));
 	}
+
+	public function getDangtin(){
+		$dataCate = $this->postCategory->getAllCategories();
+		$dataCity = $this->postCity->getAll();
+		return view('frontend/post/trang-dang-tin',compact('dataCate','dataCity'));
+	}
+	public function postDangtin(UserPostFormRequest $request){
+		$data = $request->except('_token');
+		$data['user_id'] = $this->user->getCurrentUser()->id;
+		if($id_post = $this->post->getIdCurrent($data)) {
+
+
+			return redirect()->back()->with('success', trans('general.messages.create_success'));
+		}
+		return redirect()->back()->with('error', trans('general.messages.create_fail'));
+	}
+
 }

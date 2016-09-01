@@ -61,4 +61,6 @@ interface PostRepository
      * @return int
      */
     public function countPostByDateRange($startDate, $endDate);
+
+    public function getIdCurrent($data);
 }

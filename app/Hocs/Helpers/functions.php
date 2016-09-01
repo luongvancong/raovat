@@ -604,3 +604,34 @@ if ( !function_exists('getRealIp') ) {
 		return $_SERVER['HTTP_X_REAL_IP'];
 	}
 }
+
+/*categories parent*/
+function cate_parent($data,$parent = 0,$str = "--",$select = 0){
+    foreach ($data as $val) {
+      $id = $val['id'];
+      $name = $val["name"];
+      if ($val["cate_parent"] == $parent) {
+        if ($select != 0 && $id == $select) {
+          echo "<option value='$id' selected='selected'>$str $name</option>";
+        }else{
+          echo "<option value='$id' >$str $name</option>";
+        }
+      cate_parent($data,$id,$str."--",$select);
+      }
+    }
+}
+
+function city_parent($data,$parent = 0,$str = "--",$select = 0){
+    foreach ($data as $val) {
+      $id = $val['cit_id'];
+      $name = $val["cit_name"];
+      if ($val["cit_parent"] == $parent) {
+        if ($select != 0 && $id == $select) {
+          echo "<option value='$id' selected='selected'>$str $name</option>";
+        }else{
+          echo "<option value='$id' >$str $name</option>";
+        }
+      city_parent($data,$id,$str."--",$select);
+      }
+    }
+}

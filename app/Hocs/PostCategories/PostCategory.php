@@ -24,6 +24,14 @@ class PostCategory extends Model {
 		return $this->name;
 	}
 
+	public function setCate_Parent($cate_parent) {
+		$this->cate_parent = $cate_parent;
+	}
+
+	public function getCate_Parent() {
+		return $this->cate_parent;
+	}
+
 	public function getSlug() {
 		if(!$this->slug) {
 			return removeTitle(trim($this->getName()));
@@ -34,5 +42,12 @@ class PostCategory extends Model {
 
 	public function getUrl() {
 		return route('post.category', [$this->getId(), $this->getSlug()]);
+	}
+
+	public function getChild(){
+		return $this->hasMany('Nht\Hocs\PostCategories\PostCategory', 'cate_parent','id');
+	}
+	public function getParent(){
+		return $this->hasOne('Nht\Hocs\PostCategories\PostCategory', 'id', 'cate_parent');
 	}
 }

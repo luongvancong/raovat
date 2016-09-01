@@ -24,6 +24,7 @@ class AdminPostCategoryFormRequest extends Request
 	public function rules()
 	{
 		return [
+			'cate_parent' => 'required',
 			'name' => 'required',
 		];
 	}
@@ -32,6 +33,7 @@ class AdminPostCategoryFormRequest extends Request
 	{
 		return [
 			'name.required' => 'Vui lòng nhập tên',
+			'cate_parent.required' => 'Vui lòng chọn danh mục'
 		];
 	}
 }

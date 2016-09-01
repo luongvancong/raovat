@@ -30,7 +30,7 @@ class HomeController extends FrontendController
 	 */
 	public function index(Request $request)
 	{
-		return view('welcome');
+		return view('frontend.home.chotot-index');
 	}
 
 

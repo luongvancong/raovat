@@ -5,7 +5,8 @@ namespace Nht\Hocs\Users;
 use Nht\Hocs\Core\BaseRepository;
 use Nht\Hocs\Users\User;
 use Illuminate\Contracts\Auth\Guard;
-
+use Auth;
+use DB;
 /**
  * Class DbUserRepository.
  *
@@ -82,8 +83,15 @@ class DbUserRepository extends BaseRepository implements UserRepository
 		return $this->model->where('id', $userId)->update(['money' => \DB::raw("money + {$money}")]);
 	}
 
-
 	public function isLinkToShop(User $user) {
 		return $user->shop_id > 0 ? true : false;
 	}
+
+	public function isLoginUser($data){
+		return Auth::attempt(['email'=>$data['email'],'password'=>$data['password']]);
+	}
+
+	/*public function getIdUserCurrent($data){
+		return $this->model->insertGetId($data);
+	}*/
 }

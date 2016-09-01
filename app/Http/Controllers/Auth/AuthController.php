@@ -5,6 +5,10 @@ namespace Nht\Http\Controllers\Auth;
 use Socialite;
 use Illuminate\Routing\Controller;
 
+use Nht\Http\Requests;
+use Illuminate\Http\Request;
+use Nht\Http\Requests\UserRegisterFormRequest;
+
 use Nht\Http\Controllers\FrontendController;
 use Nht\Hocs\Users\UserRepository;
 use App;
@@ -36,7 +40,30 @@ class AuthController extends FrontendController
         $this->metadata->setMetaKeyword('đăng ký, đăng nhập, so sánh giá, so sánh giá hot nhất, điện thoại mới, đồ công nghệ, giá rẻ, iphone6, iphone6s...');
         $this->metadata->setDescription('Giá máy tính, giá điện thoại di dộng, giá rẻ, so sánh gía, hot nhất, đăng ký, đăng nhập');
 
-        return view('frontend/auth/login');
+        return view('frontend/auth/dangnhap');
+    }
+
+    public function postLoginForm(Request $request){
+        $data = $request->except('_token');
+        if ($this->user->isLoginUser($data))
+        {
+            return redirect()->route('home-page');
+        }
+        else
+        {
+            return redirect()->back()->with(['thongbao' => 'Sai tài khoản hoặc mật khẩu', 'level' => 'danger']);
+        }
+    }
+    public function getDangky(){
+        return view('frontend/auth/dangky');
+    }
+    public function postDangkyForm(UserRegisterFormRequest $request){
+        $data = $request->except('_token');
+        $data['password'] = bcrypt($request->password);
+        $data['avatar'] = "avatar.jpg";
+        if ($this->user->create($data)) {
+            return redirect()->route('dangnhap')->with('success', trans('general.messages.create_success'));
+        }
     }
 
     /**
@@ -91,6 +118,6 @@ class AuthController extends FrontendController
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('auth.login_form');
+        return redirect()->route('dangnhap');
     }
 }

@@ -20,6 +20,7 @@
 							<tr>
 								<th>ID</th>
 								<th>Tên</th>
+								<th>Danh mục</th>
 								<th>Sửa</th>
 								<th>Xóa</th>
 							</tr>
@@ -29,6 +30,13 @@
 								<tr>
 									<td width="50">{{ $category->getId() }}</td>
 									<td>{{ $category->getName() }}</td>
+									<td>
+										@if($category->getCate_Parent() == 0)
+											Danh mục cha
+										@else
+											{!! $category->getParent->name !!}
+										@endif 
+									</td>
 									<td width="30"><a href="{{ route('admin.post_category.edit', $category->getId()) }}" class="btn btn-xs btn-default"><i class="fa fa-pencil"></i></a></td>
 									<td width="30"><a href="{{ route('admin.post_category.delete', $category->getId()) }}" class="btn btn-xs btn-danger btn-delete-action"><i class="fa fa-trash-o"></i></a></td>
 								</tr>

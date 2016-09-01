@@ -52,6 +52,7 @@
 					<ul class="sub">
 						<li class="{{ Request::is("admin/post/index") ? 'active' : '' }}"><a href="{{ route('admin.post.index') }}">Danh sách</a></li>
 						<li class="{{ Request::is("admin/post-category/index") ? 'active' : '' }}"><a href="{{ route('admin.post_category.index') }}">Danh mục</a></li>
+						<li class="{{ Request::is("admin/cities/index") ? 'active' : '' }}"><a href="{{ route('admin.city.index') }}">Cities</a></li>
 					</ul>
 				</li>
 				@endif

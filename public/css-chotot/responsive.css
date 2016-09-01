@@ -1,0 +1,68 @@
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  .circle, .step_des_active {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .nhac-ban {
+    display: none;
+  }
+
+  .form-dang-tin .aiupload-right {
+    display: none;
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 424px) {
+  .circle, .step_des_active {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .nhac-ban {
+    display: none;
+  }
+
+  .form-dang-tin .aiupload-right {
+    display: none;
+  }
+}
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+  .circle, .step_des_active {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .nhac-ban {
+    display: none;
+  }
+
+  .form-dang-tin .aiupload-right {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .step_des_active {
+    float: left;
+  }
+
+  .nhac-ban {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1023px) {
+  .step_des_active {
+    float: left;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1999px) {
+  .step_des_active {
+    float: left;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .step_des_active {
+    float: left;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */

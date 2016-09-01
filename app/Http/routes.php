@@ -180,9 +180,12 @@ Route::get('auth/login', ['as' => 'auth.login_form', 'uses' => 'Auth\AuthControl
 Route::get('auth/logout', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 // Profile
-// Route::get('profile', ['as' => 'profile.index', 'middleware' => 'check_logged', 'uses' => 'ProfileController@getIndex']);
-// Route::post('profile', 'ProfileController@postIndex');
-// Route::post('profile/change-avatar', ['as' => 'profile.change_avatar', 'uses' => 'ProfileController@changeAvatar']);
+Route::get('profile', ['as' => 'profile.chinhsua', 'middleware' => 'check_logged', 'uses' => 'ProfileController@getIndex']);
+Route::post('profile', 'ProfileController@postIndex');
+Route::post('profile/change-avatar', ['as' => 'profile.avatar', 'uses' => 'ProfileController@changeAvatar']);
+
+Route::get('profile/doi-mat-khau',['as' => 'profile.password', 'middleware' => 'check_logged', 'uses' => 'ProfileController@changePassword']);
+Route::post('profile/doi-mat-khau',['as' => 'profile.post.password', 'uses' => 'ProfileController@postChangePassword']);
 // Route::get('/profile/{userId}-{slug}', ['as' => 'profile.index', 'before' => 'check_logged' ,'uses' => 'ProfileController@getIndex']);
 
 // socical: google,facebook or github
@@ -228,3 +231,13 @@ Route::get('/view-log-spider', function() {
 	}
 });
 
+/*Route chotot*/
+Route::get('dang-nhap',['as'=>'dangnhap','uses'=>'Auth\AuthController@getLoginForm']);
+Route::post('dang-nhap',['as'=>'post.dangnhap','uses' => 'Auth\AuthController@postLoginForm']);
+Route::get('log-out',['as'=>'get.logout','uses' => 'Auth\AuthController@getLogout']);
+
+Route::get('dang-ky',['as' => 'dangky', 'uses' => 'Auth\AuthController@getDangky']);
+Route::post('dang-ky',['as'=>'post.dangky','uses' => 'Auth\AuthController@postDangkyForm']);
+
+Route::get('dang-tin',['as'=>'get.dangtin', 'middleware' => 'check_logged', 'uses'=>'PostController@getDangtin']);
+Route::post('dang-tin',['as'=>'post.dangtin','uses'=>'PostController@postDangtin']);

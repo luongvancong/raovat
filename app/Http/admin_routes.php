@@ -344,6 +344,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 			Route::get('/{id}/delete', ['as' => 'admin.post_category.delete', 'permissions' => 'post_category.delete' ,'uses' => 'PostCategoryController@getDelete']);
 		});
 
+		//Cities
+		Route::group(['prefix' => 'cities'],function(){
+			Route::get('/index',['as' => 'admin.city.index', 'permissions' => 'city.view', 'uses' => 'CitiesController@getIndex']);
+			Route::get('/create', ['as' => 'admin.city.create', 'permissions' => 'city.view' ,'uses' => 'CitiesController@getCreate']);
+			Route::post('/create', ['permissions' => 'city.create', 'uses' => 'CitiesController@postCreate']);
+
+			Route::get('/{id}/edit', ['as' => 'admin.city.edit', 'permissions' => 'city.view' ,'uses' => 'CitiesController@getEdit']);
+			Route::post('/{id}/edit', ['permissions' => 'city.edit', 'uses' => 'CitiesController@postEdit']);
+
+			Route::get('/{id}/delete', ['as' => 'admin.city.delete', 'permissions' => 'city.delete' ,'uses' => 'CitiesController@getDelete']);
+		});
 
 		// Banners
 		Route::group(['prefix' => 'banners'], function() {

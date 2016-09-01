@@ -49,7 +49,7 @@ class Image {
 		// Create new instance of Image
 		$image = $this->getImage($fullPathFile);
 
-		$fileName = explode(DIRECTORY_SEPARATOR, $fullPathFile);
+		$fileName = explode('/', $fullPathFile);
 		$fileName = end($fileName);
 
 		$result = [];
@@ -85,7 +85,7 @@ class Image {
 	public function crop($fullPathFile, $pathUpload, $arrayCrop) {
 		$image = $this->getImage($fullPathFile);
 
-		$fileName = explode(DIRECTORY_SEPARATOR, $fullPathFile);
+		$fileName = explode('/', $fullPathFile);
 		$fileName = end($fileName);
 
 		$result = [];

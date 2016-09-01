@@ -140,4 +140,9 @@ class DbPostRepository extends BaseRepository implements PostRepository
 	public function countPostByDateRange($startDate, $endDate) {
 		return $this->model->whereBetween('created_at', [$startDate, $endDate])->count();
 	}
+
+	public function getIdCurrent($data){
+		return $this->model->insertGetId($data);
+	}
+
 }

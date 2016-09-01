@@ -4,6 +4,17 @@
 	<h3>Cập nhật nhóm tin</h3>
 	<div class="panel-body">
 		<form class="form-horizontal bucket-form" method="post" action enctype="multipart/form-data">
+			<div class="form-group {{ hasValidator('cate_parent') }}">
+				<label for="email" class="col-sm-3 control-label">Chọn loại danh mục<b class="text-danger">*</b></label>
+				<div class="col-sm-6 text-center">
+					<select name="cate_parent" class="form-control">
+						<option value="0">---Chọn một danh mục---</option>
+						{!! cate_parent($data,0,"--",$category->getCate_Parent()) !!}
+					</select>
+					{!! alertError('cate_parent') !!}
+				</div>
+			</div>
+
 			<div class="form-group {{ hasValidator('name') }}">
 				<label for="email" class="col-sm-3 control-label">Tên <b class="text-danger">*</b></label>
 				<div class="col-sm-6 text-center">

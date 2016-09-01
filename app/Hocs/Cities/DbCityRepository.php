@@ -13,6 +13,19 @@ class DbCityRepository extends BaseRepository implements CityRepository
         $this->model = $model;
     }
 
+    public function getAllCities($perPage = 25, $filterArray = array()) {
+        $name = array_get($filterArray, 'name');
+        $query = $this->model;
+
+        if($name) {
+            $query->where('name', 'LIKE', '%'. $name .'%');
+        }
+
+        $query->orderBy('updated_at', 'DESC');
+
+        return $query->paginate($perPage);
+    }
+
     public function getAll() {
         return $this->model->orderBy('cit_name', 'ASC')->get();
     }
