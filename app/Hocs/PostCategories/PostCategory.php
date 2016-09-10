@@ -45,9 +45,13 @@ class PostCategory extends Model {
 	}
 
 	public function getChild(){
-		return $this->hasMany('Nht\Hocs\PostCategories\PostCategory', 'cate_parent','id');
+		return $this->hasMany('Nht\Hocs\PostCategories\PostCategory', 'cate_parent', 'id');
 	}
 	public function getParent(){
 		return $this->hasOne('Nht\Hocs\PostCategories\PostCategory', 'id', 'cate_parent');
+	}
+
+	public function getChildCategory(){
+		return $this->hasMany('Nht\Hocs\Posts\Post', 'category_id','id');
 	}
 }

@@ -10,6 +10,8 @@ class Post extends Model
 
 	public $fillable = ['title', 'content', 'slug', 'category_id', 'user_id', 'active', 'hot'];
 
+	public $timestamps = true;
+
 	protected $PATH_STATIC = '/';
 
 	public function getId() {
@@ -20,8 +22,16 @@ class Post extends Model
 		return $this->title;
 	}
 
+	public function getPrice() {
+		return $this->price;
+	}
+
 	public function getSlug() {
 		return removeTitle($this->getTitle());
+	}
+
+	public function getStatus() {
+		return $this->status;
 	}
 
 	public function getTeaser() {
@@ -54,7 +64,7 @@ class Post extends Model
 
 
 	public function getImage($type = 'thumbs/big') {
-		return $this->PATH_STATIC . 'uploads/' . $type . '/' . $this->avatar;;
+		return $this->PATH_STATIC . 'uploads/' . $type . '/' . $this->avatar;
 	}
 
 	public function getCategory() {
@@ -66,6 +76,15 @@ class Post extends Model
 	public function getCategoryId()
 	{
 		return $this->category_id;
+	}
+
+	public function getCityId()
+	{
+		return $this->city_id;
+	}
+
+	public function getDoiTime(){
+		return \Carbon\Carbon::createFromTimeStamp(strtotime($this->created_at))->diffForHumans();
 	}
 
 	public function getUpdatedAt() {
@@ -121,6 +140,22 @@ class Post extends Model
 	}
 
 	public function post_image(){
-		return $this->hasMany('Nht\Hocs\Posts\PostImage', 'post_id');
+		return $this->hasMany('Nht\Hocs\Posts\PostImage', 'post_id', 'id');
+	}
+
+	public function getChildUser(){
+		return $this->hasOne('Nht\Hocs\Users\User', 'id', 'user_id');
+	}
+
+	public function getChildCategory(){
+		return $this->hasOne('Nht\Hocs\PostCategories\PostCategory', 'id', 'category_id');
+	}
+
+	public function getChildCities(){
+		return $this->hasOne('Nht\Hocs\Cities\City', 'cit_id', 'city_id');
+	}
+
+	public function getChildDistrictCity(){
+		return $this->hasOne('Nht\Hocs\Cities\City', 'cit_id', 'district_id');
 	}
 }

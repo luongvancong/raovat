@@ -217,19 +217,7 @@ require_once app_path() . '/Http/account_routes.php';
 Route::get('/test', 'TestController@getIndex');
 
 
-/**
- * Download spider log to localhosts
- */
-Route::get('/view-log-spider', function() {
-	$debug = (int) Request::get('debug');
-	$hack = (int) Request::get('hack', -1);
-	$date = Request::get('date');
-	if(!$date) $date = date('Ymd');
-	if($debug === 1 && $hack === 0) {
-		$file = realpath('./../../sat8spider/logs/'. $date .'.log');
-		return Response::download($file);
-	}
-});
+
 
 /*Route chotot*/
 Route::get('dang-nhap',['as'=>'dangnhap','uses'=>'Auth\AuthController@getLoginForm']);
@@ -239,5 +227,24 @@ Route::get('log-out',['as'=>'get.logout','uses' => 'Auth\AuthController@getLogou
 Route::get('dang-ky',['as' => 'dangky', 'uses' => 'Auth\AuthController@getDangky']);
 Route::post('dang-ky',['as'=>'post.dangky','uses' => 'Auth\AuthController@postDangkyForm']);
 
-Route::get('dang-tin',['as'=>'get.dangtin', 'middleware' => 'check_logged', 'uses'=>'PostController@getDangtin']);
-Route::post('dang-tin',['as'=>'post.dangtin','uses'=>'PostController@postDangtin']);
+Route::get('dang-tin',['as'=>'get.dangtin', 'middleware' => 'check_logged', 'uses' => 'PostController@getDangtin']);
+Route::post('dang-tin',['as'=>'post.dangtin', 'uses' => 'PostController@postDangtin']);
+
+/*
+load ajax
+ */
+Route::get('dang-tin/ajax-get-catechild/{cate_id}', ['as' => 'get.loadcate', 'uses' => 'PostController@getLoadCate']);
+Route::get('dang-tin/ajax-get-districts/{cityId}', ['as' => 'post.loadcity', 'uses' => 'PostController@postLoadCity']);
+
+Route::get('danh-sach-tin/{id}', ['as' => 'getDanhsachtin', 'uses' => 'PostController@getDanhsachtin']);
+Route::get('danh-sach-post/{id}',['as' => 'getDanhsachpost', 'uses' => 'PostController@getDanhsachpost']);
+Route::get('danh-sach-category/{city_id}/{category_id}', ['as' => 'getDanhsachcategory', 'uses' => 'PostController@getDanhsachcategory']);
+Route::get('danh-sach-category-child/{city_id}/{category_id}', ['as' => 'getDanhsachcategorychild', 'uses' => 'PostController@getDanhsachcategorychild']);
+Route::get('danh-sach-city-district/{city_id}/{district_id}', ['as' => 'getDanhsachCityDistrict', 'uses' => 'PostController@getDanhsachCityDistrict']);
+
+Route::get('chi-tiet-tin/{id}', ['as' => 'getChitiettin', 'uses' => 'PostController@getChitiettin']);
+
+/*search*/
+Route::get('search-post', ['as' => 'postSearch', 'uses' => 'PostController@postSearch']);
+
+Route::get('tin-theo-category/{id}', ['as' => 'getTinCategory', 'uses' => 'PostController@getTinCategory']);

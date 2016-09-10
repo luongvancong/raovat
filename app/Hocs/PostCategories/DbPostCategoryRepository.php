@@ -23,4 +23,18 @@ class DbPostCategoryRepository extends BaseRepository implements PostCategoryRep
 	public function getAllCategories() {
 		return $this->model->orderBy('name', 'ASC')->get();
 	}
+
+	public function getCategoriesParent(){
+		return $this->model->where('cate_parent', 0)->orderBy('id', 'ASC')->get();
+	}
+
+	public function getCatechildByCityId($categoryId) {
+        $catechild = $this->model->where('cate_parent', $categoryId)->get();
+        return $catechild;
+    }
+
+    public function getCategoryId($category_id){
+    	$category_child_all_id = $this->model->select('id')->where('cate_parent', $category_id)->get();
+    	return $category_child_all_id;
+    }
 }

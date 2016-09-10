@@ -13,9 +13,8 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('city_id');
-            $table->integer('price');
-            $table->text('van_chuyen');
+            $table->integer('district_id');
+            $table->integer('catechild_id');
         });
     }
 
@@ -27,7 +26,8 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('category');
+            $table->dropColumn('district_id');
+            $table->dropColumn('catechild_id');
         });
     }
 }

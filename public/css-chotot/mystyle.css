@@ -150,11 +150,34 @@ header .navbar {
 .mua-ban .mua-ban-left .tab-content {
   padding: 15px 0;
 }
-.mua-ban .mua-ban-left .tab-content a i {
-  font-size: 12px;
-  margin-right: 5px;
+.mua-ban .mua-ban-left .tab-content ul {
+  list-style-type: none;
+  padding-left: 0;
 }
-.mua-ban .mua-ban-left .tab-content a {
+.mua-ban .mua-ban-left .tab-content ul li {
+  display: block;
+  overflow: hidden;
+}
+.mua-ban .mua-ban-left .tab-content ul li i {
+  font-size: 18px;
+  margin-right: 5px;
+  color: #23527c;
+  display: inline-block;
+  float: left;
+  line-height: 20px;
+  cursor: pointer;
+}
+.mua-ban .mua-ban-left .tab-content ul li a {
+  display: inline-block;
+  width: 210px;
+  float: left;
+}
+.mua-ban .mua-ban-left .tab-content ul .cate-con {
+  padding-left: 15px;
+  float: left;
+  display: none;
+}
+.mua-ban .mua-ban-left .tab-content ul .cate-con li {
   display: block;
 }
 .mua-ban .mua-ban-right .in-dam {

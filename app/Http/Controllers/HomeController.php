@@ -11,6 +11,9 @@ use Nht\Hocs\Products\Product;
 use Nht\Hocs\Products\ProductRepository;
 use Nht\Hocs\Sites\SiteRepository;
 use Nht\Hocs\Tags\TagRepository;
+
+use Nht\Hocs\Cities\CityRepository;
+
 use Nht\Http\Controllers\FrontendController;
 use Nht\Http\Requests;
 use OpenGraph;
@@ -18,9 +21,11 @@ use OpenGraph;
 class HomeController extends FrontendController
 {
 
-	public function __construct()
+	public function __construct(CityRepository $city, PostRepository $post)
 	{
 		parent::__construct();
+		$this->city = $city;
+		$this->post = $post;
 	}
 
 	/**
@@ -30,7 +35,9 @@ class HomeController extends FrontendController
 	 */
 	public function index(Request $request)
 	{
-		return view('frontend.home.chotot-index');
+		$cities = $this->city->getCities();
+		$post_item = $this->post->getAll()->random(10);
+		return view('frontend.home.chotot-index', compact('cities','post_item'));
 	}
 
 

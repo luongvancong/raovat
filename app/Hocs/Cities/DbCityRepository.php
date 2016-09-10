@@ -31,7 +31,7 @@ class DbCityRepository extends BaseRepository implements CityRepository
     }
 
     public function getCities() {
-        return $this->model->where('cit_parent', 0)->get();
+        return $this->model->where('cit_parent', 0)->orderBy('cit_id', 'ASC')->get();
     }
 
     public function getDistrictsByCityId($cityId) {

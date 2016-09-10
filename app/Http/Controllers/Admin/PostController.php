@@ -86,4 +86,21 @@ class PostController extends AdminController
 		\DB::table('posts_tags')->where('post_id', $postId)->where('tag_id', $tagId)->delete();
 		return redirect()->back()->with('success', 'Xóa thành công');
 	}
+
+	public function active($id) {
+		$post = $this->post->getById($id);
+
+		$post->status = !$post->status;
+
+		if($post->save()) {
+			return response()->json([
+			   'code' => 1,
+			   'status' => $post->getStatus()
+			]);
+		}
+
+		return response()->json([
+		   'code' => 0
+		]);
+	}
 }

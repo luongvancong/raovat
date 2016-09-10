@@ -29,7 +29,7 @@
                                 <p>» Mỗi tin đăng chỉ rao bán một mặt hàng.</p>
                             </div>
                         </div>
-                        <form class="form-horizontal" action method="post" accept-charset="utf-8">
+                        <form class="form-horizontal" action="" name="frmDangtin" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                             <!-- <div class="col-md-12 dang-tin-header">
                                 Thông tin liên hệ <span>(Vui lòng điền đầy đủ tất cả các mục)</span>
                             </div>
@@ -74,12 +74,20 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="form-group {{ hasValidator('category_id') }}">
+                                    <div class="form-group">
                                         <label for="Chuyenmuc" class="col-sm-2 control-label">Chuyên mục:</label>
                                         <div class="col-sm-6">
-                                            <select name="category_id" id="Chuyenmuc" class="form-control">
-                                                <option value="0" selected="selected">---Chọn danh mục---</option>
+                                            <select name="" id="chuyenmuc" class="form-control">
+                                                <option value="" selected="selected">---Chọn danh mục---</option>
                                                 {!! cate_parent($dataCate,0,"--",0) !!}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group {{ hasValidator('category_id') }}">
+                                        <label for="Chuyenmuc" class="col-sm-2 control-label">Chuyên mục con:</label>
+                                        <div class="col-sm-6">
+                                            <select name="category_id" id="chuyenmuc-con" class="form-control">
+                                                <option value="" selected="selected">---Chọn danh mục con---</option>
                                             </select>
                                             {!! alertError('category_id') !!}
                                         </div>
@@ -87,11 +95,20 @@
                                     <div class="form-group {{ hasValidator('city_id') }}">
                                         <label for="Vungmien" class="col-sm-2 control-label">Vùng:</label>
                                         <div class="col-sm-6">
-                                            <select name="city_id" id="Vungmien" class="form-control">
-                                                <option value="0" selected="selected">---Chọn tỉnh thành---</option>
+                                            <select name="city_id" id="vungmien" class="form-control">
+                                                <option value="">---Chọn vùng---</option>
                                                 {!! city_parent($dataCity,0,"--",0) !!}
                                             </select>
                                             {!! alertError('city_id') !!}
+                                        </div>
+                                    </div>
+                                    <div class="form-group {{ hasValidator('district_id') }}">
+                                        <label for="Vungmien" class="col-sm-2 control-label">Tỉnh, quận, huyện:</label>
+                                        <div class="col-sm-6">
+                                            <select id="district-id" name="district_id" class="form-control">
+                                                <option value="">---Chọn tỉnh, thành, quận---</option>
+                                            </select>
+                                            {!! alertError('district_id') !!}
                                         </div>
                                     </div>
                                     <div class="form-group {{ hasValidator('active') }}">
@@ -137,7 +154,7 @@
                                             {!! alertError('price') !!}
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group {{ hasValidator('post_images') }}">
                                         <label for="Hinh" class="col-sm-2 control-label">Hình:</label>
                                         <div class="col-sm-5">
                                             <div class="chon-hinh-tin">
@@ -146,7 +163,17 @@
                                                     <p class="text-center"><b>Đăng hình để bán chạy hơn</b></p>
                                                 </div>
                                                 <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
+                                                    <input type="file" name="post_images[]" multiple="multiple" value="" placeholder="">
+                                                    <div class="item-hinh">
+                                                        <div class="ai_camera">
+                                                            <img src="{!! asset('images/icon/ai.png') !!}">
+                                                        </div>
+                                                        <span>Đăng hình</span>
+                                                    </div>
+                                                </div>
+                                                {!! alertError('post_images') !!}
+                                                {{-- <div class="item-hinh-chon">
+                                                    <input type="file" name="post_images[]" value="" placeholder="">
                                                     <div class="item-hinh">
                                                         <div class="ai_camera">
                                                             <img src="{!! asset('images/icon/ai.png') !!}">
@@ -155,7 +182,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
+                                                    <input type="file" name="post_images[]" value="" placeholder="">
                                                     <div class="item-hinh">
                                                         <div class="ai_camera">
                                                             <img src="{!! asset('images/icon/ai.png') !!}">
@@ -164,7 +191,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
+                                                    <input type="file" name="post_images[]" value="" placeholder="">
                                                     <div class="item-hinh">
                                                         <div class="ai_camera">
                                                             <img src="{!! asset('images/icon/ai.png') !!}">
@@ -173,7 +200,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
+                                                    <input type="file" name="post_images[]" value="" placeholder="">
                                                     <div class="item-hinh">
                                                         <div class="ai_camera">
                                                             <img src="{!! asset('images/icon/ai.png') !!}">
@@ -182,23 +209,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
+                                                    <input type="file" name="post_images[]" value="" placeholder="">
                                                     <div class="item-hinh">
                                                         <div class="ai_camera">
                                                             <img src="{!! asset('images/icon/ai.png') !!}">
                                                         </div>
                                                         <span>Đăng hình</span>
                                                     </div>
-                                                </div>
-                                                <div class="item-hinh-chon">
-                                                    <input type="file" name="" value="" placeholder="">
-                                                    <div class="item-hinh">
-                                                        <div class="ai_camera">
-                                                            <img src="{!! asset('images/icon/ai.png') !!}">
-                                                        </div>
-                                                        <span>Đăng hình</span>
-                                                    </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="chon-hinh-bottom">
                                                     <p class="text-center">Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</p>
                                                 </div>

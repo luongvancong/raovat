@@ -17,6 +17,15 @@ interface PostRepository
 
 	public function getPosts($perPage = 20, $filterArray = array());
 
+    public function getCityCatePost($city_id, $category_child_all_id = '', $perPage = 2, $filterArray = array());
+    public function getCityPostCateChild($city_id, $category_id = '', $perPage = 2, $filterArray = array());
+    public function getCityDistrictPost($city_id, $district_id = '', $perPage = 2, $filterArray = array());
+
+    public function getPostSame($city_id, $category_id, $perPage = 2, $filterArray = array());
+
+    public function getSearchPosts($tukhoa = '', $category_id = '', $city_id = '', $perPage = 2, $filterArray = array());
+
+    public function getTinCategories($category_child_all_id, $perPage = 2, $filterArray = array());
 
     /**
      * Tin cùng danh mục dạng text

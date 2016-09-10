@@ -330,6 +330,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 			Route::post('/{postId}/tag/create', ['permissions' => 'post.edit', 'uses' => 'PostController@tagCreateStore']);
 
 			Route::get('/{postId}/tag/{tagId}/delete', ['as' => 'admin.post.tag.delete', 'permissions' => 'post.edit' ,'uses' => 'PostController@tagDelete']);
+
+			Route::get('{id}/active', [
+				'as'          => 'admin.post.active',
+				'uses'        => 'PostController@active',
+				'permissions' => 'post.edit'
+			]);
 		});
 
 		// Post Categories

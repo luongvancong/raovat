@@ -22,6 +22,16 @@
         <![endif]-->
     </head>
     <body>
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.7";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
         <!-- header -->
         <header>
             <!-- menu-top -->
@@ -135,6 +145,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
         <script src="{!! asset('js-chotot/bootstrap.min.js') !!}"></script>
         <script src="{!! asset('js-chotot/owl.carousel.min.js') !!}"></script>
         <script src="{!! asset('js-chotot/myscript.js') !!}"></script>

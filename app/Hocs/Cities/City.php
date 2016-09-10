@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     protected $primaryKey = 'cit_id';
+
+    protected $fillable = ['cit_name','cit_parent'];
     public $timestamps    = false;
 
     public function getId() {
@@ -38,6 +40,10 @@ class City extends Model
     }
     public function getParent(){
         return $this->hasOne('Nht\Hocs\Cities\City', 'cit_id', 'cit_parent');
+    }
+
+    public function getChildCity(){
+        return $this->hasMany('Nht\Hocs\Posts\Post', 'city_id','cit_id');
     }
 
 }

@@ -145,4 +145,97 @@ class DbPostRepository extends BaseRepository implements PostRepository
 		return $this->model->insertGetId($data);
 	}
 
+	public function getCityCatePost($city_id, $category_child_all_id = '', $perPage = 2, $filterArray = array()) {
+		$name = array_get($filterArray, 'name');
+		$query = $this->model->where('city_id', $city_id);
+
+		if ($category_child_all_id) {
+			$query->whereIn('category_id', $category_child_all_id);
+		}
+		if($name) {
+			$query->where('name', 'LIKE', '%'. $name .'%');
+		}
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
+	public function getCityPostCateChild($city_id, $category_id = '', $perPage = 2, $filterArray = array()) {
+		$name = array_get($filterArray, 'name');
+		$query = $this->model->where('city_id', $city_id);
+
+		if ($category_id) {
+			$query->where('category_id', $category_id);
+		}
+		if($name) {
+			$query->where('name', 'LIKE', '%'. $name .'%');
+		}
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
+	public function getCityDistrictPost($city_id = '', $district_id = '', $perPage = 2, $filterArray = array()) {
+		$name = array_get($filterArray, 'name');
+		$query = $this->model->join('cities', 'posts.city_id', '=', 'cities.cit_id')->where('city_id', $city_id);
+
+		if ($district_id) {
+			$query->where('district_id', $district_id);
+		}
+		if($name) {
+			$query->where('name', 'LIKE', '%'. $name .'%');
+		}
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
+	public function getPostSame($city_id, $category_id, $perPage = 2, $filterArray = array()) {
+		$name = array_get($filterArray, 'name');
+		$query = $this->model->where('city_id', $city_id)->where('category_id', $category_id);
+
+		if($name) {
+			$query->where('name', 'LIKE', '%'. $name .'%');
+		}
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
+	public function getAll(){
+		return $this->model->orderBy('title', 'ASC')->get();
+	}
+
+	public function getSearchPosts($tukhoa = '', $category_id = '', $city_id = '', $perPage = 2, $filterArray = array()){
+		$name = array_get($filterArray, 'name');
+		$query = $this->model->where('title', 'LIKE', '%'. $tukhoa .'%');
+
+		if ($category_id) {
+			$query->where('category_id', $category_id);
+		}
+
+		if ($city_id) {
+			$query->where('city_id', $city_id);
+		}
+		if($name) {
+			$query->where('name', 'LIKE', '%'. $name .'%');
+		}
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
+	public function getTinCategories($category_child_all_id, $perPage = 2, $filterArray = array()){
+		$query = $this->model->whereIn('category_id', $category_child_all_id);
+
+		$query->orderBy('updated_at', 'DESC');
+
+		return $query->paginate($perPage);
+	}
+
 }
