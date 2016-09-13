@@ -132,3 +132,5 @@ Route::get('chi-tiet-tin/{id}', ['as' => 'getChitiettin', 'uses' => 'PostControl
 Route::get('search-post', ['as' => 'postSearch', 'uses' => 'PostController@postSearch']);
 
 Route::get('tin-theo-category/{id}', ['as' => 'getTinCategory', 'uses' => 'PostController@getTinCategory']);
+
+
