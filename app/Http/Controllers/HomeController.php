@@ -36,7 +36,11 @@ class HomeController extends FrontendController
 	public function index(Request $request)
 	{
 		$cities = $this->city->getCities();
-		$post_item = $this->post->getAll()->random(10);
+		$post_item = $this->post->getAll();
+
+		if($post_item->count() > 10) {
+			$post_item = $post_item->random(10);
+		}
 		return view('frontend.home.chotot-index', compact('cities','post_item'));
 	}
 
