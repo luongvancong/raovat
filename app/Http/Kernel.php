@@ -26,6 +26,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'singup' => \Nht\Http\Middleware\Singup::class,
         'auth' => \Nht\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Nht\Http\Middleware\RedirectIfAuthenticated::class,

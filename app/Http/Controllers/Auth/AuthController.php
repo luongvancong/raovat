@@ -14,15 +14,17 @@ use Nht\Hocs\Users\UserRepository;
 use App;
 use Auth;
 use Config;
+use Nht\Hocs\Cities\CityRepository;
 
 class AuthController extends FrontendController
 {
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepository $user, CityRepository $postCity)
     {
         parent::__construct();
         $this->user  = $user;
         $this->image = App::make('ImageFactory');
+        $this->postCity = $postCity;
     }
 
     public function getLoginForm()
@@ -54,15 +56,16 @@ class AuthController extends FrontendController
             return redirect()->back()->with(['thongbao' => 'Sai tài khoản hoặc mật khẩu', 'level' => 'danger']);
         }
     }
-    public function getDangky(){
-        return view('frontend/auth/dangky');
+    public function getDangky() {
+        $dataCity = $this->postCity->getCities();
+        return view('frontend/auth/dangky',compact('dataCity'));
     }
-    public function postDangkyForm(UserRegisterFormRequest $request){
+    public function postDangkyForm(UserRegisterFormRequest $request) {
         $data = $request->except('_token');
         $data['password'] = bcrypt($request->password);
         $data['avatar'] = "avatar.jpg";
         if ($this->user->create($data)) {
-            return redirect()->route('dangnhap')->with('success', trans('general.messages.create_success'));
+            return redirect()->route('dangnhap')->with('success','Dang ky thanh cong');
         }
     }
 

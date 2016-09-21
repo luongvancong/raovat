@@ -18,9 +18,22 @@
                             <input type="email" class="form-control" id="" name="email" value="{{ Request::old('email') }}" placeholder="Nhập email">
                             {!! alertError('email') !!}
                         </div>
-                        <div class="form-group {{ hasValidator('email') }}">
+                        <div class="form-group {{ hasValidator('password') }}">
                             <input type="password" class="form-control" id="" name="password" placeholder="Nhập mật khẩu">
                             {!! alertError('password') !!}
+                        </div>
+                        <div class="form-group">
+                            <select name="cit_id" id="vungmiens" class="form-control">
+                                <option>---Chọn vùng---</option>
+                                @foreach($dataCity as $city) 
+                                    <option value="{{ $city->cit_id }}">{{ $city->cit_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="cit_parent" id="quanhuyen" class="form-control">
+                                <option value="">---Chọn Tinh, Quan, Huyen---</option> 
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="" name="address" placeholder="Địa chỉ">

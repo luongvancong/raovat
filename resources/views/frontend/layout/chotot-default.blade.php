@@ -72,7 +72,7 @@
                                         <i class="fa fa-caret-down"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> Các tin đã đăng
+                                        <li><a href="{{ route('danhsachtindang') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Các tin đã đăng
                                         </a>
                                         </li>
                                         <li><a href="{!! route('profile.chinhsua') !!}"><i class="fa fa-user-secret" aria-hidden="true"></i> Thông tin cá nhân

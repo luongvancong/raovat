@@ -108,8 +108,12 @@ Route::get('dang-nhap',['as'=>'dangnhap','uses'=>'Auth\AuthController@getLoginFo
 Route::post('dang-nhap',['as'=>'post.dangnhap','uses' => 'Auth\AuthController@postLoginForm']);
 Route::get('log-out',['as'=>'get.logout','uses' => 'Auth\AuthController@getLogout']);
 
-Route::get('dang-ky',['as' => 'dangky', 'uses' => 'Auth\AuthController@getDangky']);
-Route::post('dang-ky',['as'=>'post.dangky','uses' => 'Auth\AuthController@postDangkyForm']);
+Route::group(['middleware' => ['singup']], function() {
+	Route::get('dang-ky',['as' => 'dangky', 'uses' => 'Auth\AuthController@getDangky']);
+	Route::post('dang-ky',['as'=>'post.dangky','uses' => 'Auth\AuthController@postDangkyForm']);
+	//Route::get('dang-ky',['as' => 'loatcity', 'uses' => 'PostController@getVungMien']);
+	
+});
 
 Route::get('dang-tin',['as'=>'get.dangtin', 'middleware' => 'check_logged', 'uses' => 'PostController@getDangtin']);
 Route::post('dang-tin',['as'=>'post.dangtin', 'uses' => 'PostController@postDangtin']);
@@ -117,8 +121,10 @@ Route::post('dang-tin',['as'=>'post.dangtin', 'uses' => 'PostController@postDang
 /*
 load ajax
  */
+Route::get('dang-ky/ajax-get-districts/{cityId}', ['as' => 'post.loadcity', 'uses' => 'PostController@postLoadCity']);
 Route::get('dang-tin/ajax-get-catechild/{cate_id}', ['as' => 'get.loadcate', 'uses' => 'PostController@getLoadCate']);
 Route::get('dang-tin/ajax-get-districts/{cityId}', ['as' => 'post.loadcity', 'uses' => 'PostController@postLoadCity']);
+
 
 Route::get('danh-sach-tin/{id}', ['as' => 'getDanhsachtin', 'uses' => 'PostController@getDanhsachtin']);
 Route::get('danh-sach-post/{id}',['as' => 'getDanhsachpost', 'uses' => 'PostController@getDanhsachpost']);
@@ -132,3 +138,6 @@ Route::get('chi-tiet-tin/{id}', ['as' => 'getChitiettin', 'uses' => 'PostControl
 Route::get('search-post', ['as' => 'postSearch', 'uses' => 'PostController@postSearch']);
 
 Route::get('tin-theo-category/{id}', ['as' => 'getTinCategory', 'uses' => 'PostController@getTinCategory']);
+
+/**danh sach tin da dang*/
+Route::get('danh-sach-tin-da-dang',['as'=>'danhsachtindang', 'user'=>'PostController@danhSachTinDang']);

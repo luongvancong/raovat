@@ -38,12 +38,12 @@ class ProfileController extends FrontendController {
         return redirect()->route('profile.chinhsua')->with('error', 'Cập nhật thất bại');
     }
 
-    public function changeAvatar(Request $request)
+    public function changeAvatar(Request $request) 
     {
         $user = $this->user->getCurrentUser();
         $config = Config::get('image');
         $thumbs = $config['array_crop_image'];
-        $resultUpload = $this->image->upload('file', PATH_UPLOAD_USER_AVATAR, $thumbs, 'crop');
+        $resultUpload = $this->image->upload('file', PATH_UPLOAD_USER_AVATAR, $thumbs, 'crop');//var_dump($resultUpload);die;
         if($resultUpload['status'] > 0) {
             if($this->user->update(['avatar' => $resultUpload['filename']], ['id' => $user->getId()])) {
                 return redirect()->route('profile.chinhsua')->with('success', 'Cập nhật thành công');

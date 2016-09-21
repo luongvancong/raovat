@@ -30,45 +30,7 @@
                             </div>
                         </div>
                         <form class="form-horizontal" action="" name="frmDangtin" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                            <!-- <div class="col-md-12 dang-tin-header">
-                                Thông tin liên hệ <span>(Vui lòng điền đầy đủ tất cả các mục)</span>
-                            </div>
-                            <div class="col-md-12 dang-tin-title">
-                                Bạn đã từng bán với Chợ Tốt? <b>Dùng thông tin trước đây để điền nhanh hơn.</b>
-                                <a href="" class="btn btn-success">Điền nhanh</a>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="form-group ">
-                                        <label for="Ten" class="col-sm-2 control-label">Tên:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="Ten" name="name" placeholder="Tên" value="{{ Request::old('name') }}">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="Email" class="col-sm-2 control-label">E-mail:</label>
-                                        <div class="col-sm-6">
-                                            <input type="email" class="form-control" id="Email" name="email" placeholder="E-mail" value="{{ Request::old('email') }}">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="Sodienthoai" class="col-sm-2 control-label">Số điện thoại:</label>
-                                        <div class="col-sm-6">
-                                            <input type="number" class="form-control" id="Sodienthoai" name="phone" value="{{ Request::old('phone') }}" placeholder="Số điện thoại">
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="Diachi" class="col-sm-2 control-label">Địa chỉ:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="Diachi" name="address" value="{{ Request::old('address') }}" placeholder="Địa chỉ">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                            
                             <div class="col-md-12 dang-tin-header">
                                 Nội dung tin <span>(Vui lòng điền đầy đủ tất cả các mục)</span>
                             </div>
@@ -136,12 +98,6 @@
                                         <div class="col-sm-6">
                                             <textarea name="content" rows="5" class="form-control" id="Noidungtin" placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu">{!! Request::old('content') !!}</textarea>
                                             {!! alertError('content') !!}
-                                            <label for="">Bộ gõ:</label>
-                                            <input type="radio" name="" value="" placeholder="" checked=""> Tự động
-                                            <input type="radio" name="" value="" placeholder=""> TELEX
-                                            <input type="radio" name="" value="" placeholder=""> VNI
-                                            <input type="radio" name="" value="" placeholder=""> VIQR
-                                            <input type="radio" name="" value="" placeholder=""> Tắt
                                         </div>
                                     </div>
                                     <div class="form-group {{ hasValidator('price') }}">
@@ -237,11 +193,10 @@
                                             Người bán và người mua tự thoả thuận
                                         </div>
                                     </div>
-                                    <div class="form-group {{ hasValidator('van_chuyen') }}">
+                                    <div class="form-group">
                                         <label for="Quytrinh" class="col-sm-2 control-label">Quy trình vận chuyển & giao nhận:</label>
                                         <div class="col-sm-6">
                                             <textarea name="van_chuyen" id="Quytrinh" class="form-control" rows="5">{!! Request::old('van_chuyen') !!}</textarea>
-                                            {!! alertError('van_chuyen') !!}
                                         </div>
                                     </div>
                                     <div class="form-group">

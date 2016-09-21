@@ -11,7 +11,7 @@
                     <div class="show-casing-box">
                         <ul>
                             @foreach($post_item as $key => $item)
-                            <li><a href="{!! route('getDanhsachpost', $item->getId()) !!}" title="{!! $item->getChildCategory->name !!}"><img src="{!! asset('uploads/posts/'.$item->post_image->first()->image) !!}" alt="Đồ thể thao, Dã ngoại"></a></li>
+                            <li><a href="{!! route('getDanhsachpost', $item->getId()) !!}" title="{!! is_object($item->getChildCategory) ? $item->getChildCategory->name : '' !!}"><img src="{!! is_object($item->post_image->first()) ? asset('uploads/posts/'.$item->post_image->first()->image) : '' !!}" alt="Đồ thể thao, Dã ngoại"></a></li>
                             @endforeach
                         </ul>
                     </div>

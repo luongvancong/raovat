@@ -201,11 +201,7 @@ class PostController extends FrontendController
 		return view('frontend/post/amp', compact('post', 'category' ,'relatedPosts', 'products', 'mostViewPosts', 'newestPosts', 'sameCategoryPosts'));
 	}
 
-	public function getDangtin(){
-		$dataCate = $this->postCategory->getCategoriesParent();
-		$dataCity = $this->postCity->getCities();
-		return view('frontend/post/trang-dang-tin',compact('dataCate','dataCity'));
-	}
+	
 
 	/*ajax load category city*/
 	public function getLoadCate($categoryId){
@@ -216,6 +212,18 @@ class PostController extends FrontendController
 	public function postLoadCity($cityId){
 		$districts = $this->postCity->getDistrictsByCityId($cityId);
 		return response()->json($districts);
+	}
+
+	/*load vung mien trong vao form dang ky user*/
+	// public function getVungMien() {
+	// 	$dataCity = $this->postCity->getCities();// dd($dataCity);die;
+	// 	return view('frontend.auth.dangky',compact('dataCity'));
+	// }
+	/*dang tin*/
+	public function getDangtin(){
+		$dataCate = $this->postCategory->getCategoriesParent();
+		$dataCity = $this->postCity->getCities();
+		return view('frontend/post/trang-dang-tin',compact('dataCate','dataCity'));
 	}
 
 	public function postDangtin(UserPostFormRequest $request){
@@ -234,11 +242,12 @@ class PostController extends FrontendController
 
 			 		$this->post_image->create($data_image_post);
 				}
-			 }
-			return redirect()->back()->with('success', trans('general.messages.create_success'));
+			}
+			return redirect()->Route('home-page')->with('success', 'Dang tin thanh cong');
 		}
-		return redirect()->back()->with('error', trans('general.messages.create_fail'));
+		return redirect()->back()->with('error','dang tin that bai');
 	}
+	/*end dang tin*/
 
 	public function getDanhsachtin($id){
 		$city = $this->postCity->getById($id);
@@ -306,5 +315,10 @@ class PostController extends FrontendController
 		$data = $this->post->getTinCategories($category_all_id);
 		return response()->json($data);
 	}
+	/** Ham lay ra danh sach cac tin da dang*/
+	// public function getAllPost(){
+	// 	$allPost = $this->post->
+	// 	return view('frontend.profile.quan-ly-tin-dang',compact('allPost'));
+	// }
 
 }

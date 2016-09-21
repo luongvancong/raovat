@@ -81,7 +81,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$("#chuyenmuc").change(function(){
 		var category_id = $(this).val();
-		var url = "http://localhost:8000/dang-tin/ajax-get-catechild/" + category_id;
+		var url = "http://localhost:8080/dang-tin/ajax-get-catechild/" + category_id;
 		var _token = $("form[name='frmDangtin']").find("input[name='_token']").val();
 		$.ajax({
 			url: url,
@@ -95,14 +95,15 @@ $(document).ready(function() {
 				}
 			}
 		});
+		//alert("dddd");
 	});
 });
 
 /*load ajax city*/
 $(document).ready(function() {
-	$("#vungmien").change(function(){
+	$("#vungmien").change(function() {
 		var city_id = $(this).val();
-		var url = "http://localhost:8000/dang-tin/ajax-get-districts/" + city_id;
+		var url = "http://localhost:8080/dang-tin/ajax-get-districts/" + city_id;
 		var _token = $("form[name='frmDangtin']").find("input[name='_token']").val();
 		$.ajax({
 			url: url,
@@ -118,7 +119,27 @@ $(document).ready(function() {
 		});
 	});
 });
-
+/*load ajax city dang ky user*/
+$(document).ready(function() {
+	$("#vungmiens").change(function() {
+		var city_id = $(this).val();
+		var url = "http://localhost:8080/dang-ky/ajax-get-districts/" + city_id;
+		//var _token = $("form[name='frmDangtin']").find("input[name='_token']").val();
+		$.ajax({
+			url: url,
+			type: 'GET',
+			dataType: 'json',
+			//data: {"_token":_token,"city_id":city_id},
+			success: function(result){
+				$('#quanhuyen').empty();
+				for(var i = 0; i < result.length; i ++) {
+					$('#quanhuyen').append('<option value="'+ result[i].cit_id +'">'+ result[i].cit_name +'</option>')
+				}
+			}
+		});
+		//alert("dddd");
+	});
+});
 /*category con ẩn hiện*/
 $(document).ready(function() {
 	$(".ctrl-cate").click(function(){

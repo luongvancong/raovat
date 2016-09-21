@@ -15,7 +15,7 @@
                             <form action="{{ route('profile.avatar') }}" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <div>
-                                        <img src="{{ asset('uploads/users/'.$user->avatar) }}" alt="{{ $user->getName() }}" class="img-rounded">
+                                        <img style="max-height: 150px" src="{{ asset('uploads/users/'.$user->avatar) }}" alt="{{ $user->getName() }}" class="img-rounded">
                                     </div>
                                 </div>
                                 <div class="form-group">
