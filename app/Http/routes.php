@@ -111,7 +111,7 @@ Route::get('log-out',['as'=>'get.logout','uses' => 'Auth\AuthController@getLogou
 Route::group(['middleware' => ['singup']], function() {
 	Route::get('dang-ky',['as' => 'dangky', 'uses' => 'Auth\AuthController@getDangky']);
 	Route::post('dang-ky',['as'=>'post.dangky','uses' => 'Auth\AuthController@postDangkyForm']);
-	//Route::get('dang-ky',['as' => 'loatcity', 'uses' => 'PostController@getVungMien']);
+	//Route::get('dang-ky',['as' => 'loatcity', 'uses' => 'PostController@getVungMien']); vi da co o AuthController rui co trong ham getDangKy
 	
 });
 
@@ -139,5 +139,14 @@ Route::get('search-post', ['as' => 'postSearch', 'uses' => 'PostController@postS
 
 Route::get('tin-theo-category/{id}', ['as' => 'getTinCategory', 'uses' => 'PostController@getTinCategory']);
 
-/**danh sach tin da dang*/
-Route::get('danh-sach-tin-da-dang',['as'=>'danhsachtindang', 'user'=>'PostController@danhSachTinDang']);
+/**danh sach tin da dang TheVinh*/
+Route::get('danh-sach-tin-da-dang',['as'=>'danhsachtindang', 'uses'=>'PostController@getAllPost']);
+
+Route::get('xoa-tin/{id}',['as'=>'xoatin', 'uses'=>'PostController@getDelete']);
+Route::get('chia-se-tin/{id}',['as'=>'chiasetin', 'uses'=>'PostController@getShare']);
+Route::get('an-tin/{id}',['as'=>'antin', 'uses'=>'PostController@getHidden']);
+Route::get('sua-tin/{id}',['as'=>'suatin', 'uses'=>'PostController@getEdit']);
+Route::post('sua-tin/{id}',['as'=>'suatin', 'uses'=>'PostController@postEdit']);
+
+Route::get('delete-detail',['as'=>'deleteDetail', 'uses'=>'PostController@deleteDetail']);
+

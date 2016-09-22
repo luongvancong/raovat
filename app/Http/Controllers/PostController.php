@@ -25,6 +25,7 @@ use Nht\Hocs\Posts\PostImage;
 use Input;
 use File;
 use ImageIntervention;
+use Auth;
 
 class PostController extends FrontendController
 {
@@ -315,10 +316,34 @@ class PostController extends FrontendController
 		$data = $this->post->getTinCategories($category_all_id);
 		return response()->json($data);
 	}
+
+
 	/** Ham lay ra danh sach cac tin da dang*/
-	// public function getAllPost(){
-	// 	$allPost = $this->post->
-	// 	return view('frontend.profile.quan-ly-tin-dang',compact('allPost'));
-	// }
+	public function getAllPost() {
+		$userId = Auth::user()->id;
+		$allPost = $this->post->getAllPostUserById($userId);//dd($allPost);die;
+		return view('frontend.profile.quan-ly-tin-dang',compact('allPost'));
+	}
+	public function getDelete($id) {
+		$this->post->delete($id);
+		return redirect()->Route('danhsachtindang')->with('success', 'Ban da xoa thanh cong');
+	}
+
+	public function getEdit($id) {
+		$dataCate = $this->postCategory->getCategoriesParent();
+		$dataCity = $this->postCity->getCities();
+		$dataPostById = $this->post->getFistById($id);//dd($dataPostById);die;
+		return view('frontend.post.edit',compact('dataCate','dataCity','dataPostById'));
+	}
+	public function postEdit($id) {
+
+	}
+
+	public function deleteDetail($id){
+		$userId = Auth::user()->id;
+		$delete = $this->image->delete($id);
+		return response()->json($delete);
+
+	}
 
 }

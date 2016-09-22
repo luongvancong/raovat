@@ -146,3 +146,17 @@ $(document).ready(function() {
 		$(this).next().next().toggle(500);
 	});
 });
+/*Xoa tin da dang*/
+function confirmDelete (msg) {
+	if (window.confirm(msg)) {
+		return true;
+	}
+	return false;
+}
+
+$(document).ready(function(){
+	$('#deleteDetail').click(function(){
+		var detailId = $(this).var();
+		var url = ""
+	});
+});

@@ -238,4 +238,19 @@ class DbPostRepository extends BaseRepository implements PostRepository
 		return $query->paginate($perPage);
 	}
 
+	/**
+     * load ra tat ca tin da dang
+     * @param  id cua user
+     * @return array
+     */
+	public function getAllPostUserById($userId) {
+		$listAllPost = $this->model->join('post_images', 'posts.user_id', '=', 'post_images.post_id')
+		->select('posts.*','post_images.image')->get();
+		return $listAllPost;
+	}
+	public function getFistById($id){
+		$fistId = $this->model->join('post_images', 'posts.id','=','post_images.post_id')->select('posts.*','post_images.image')->first();
+		return $fistId;
+	}
+
 }

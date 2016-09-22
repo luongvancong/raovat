@@ -17,6 +17,7 @@ use Nht\Hocs\Cities\CityRepository;
 use Nht\Http\Controllers\FrontendController;
 use Nht\Http\Requests;
 use OpenGraph;
+use Auth;
 
 class HomeController extends FrontendController
 {
@@ -35,6 +36,8 @@ class HomeController extends FrontendController
 	 */
 	public function index(Request $request)
 	{
+		//Auth::user()->id;
+		//_debug(Auth::user()->id);die;
 		$cities = $this->city->getCities();
 		$post_item = $this->post->getAll();
 
@@ -42,7 +45,13 @@ class HomeController extends FrontendController
 			$post_item = $post_item->random(10);
 		}
 		return view('frontend.home.chotot-index', compact('cities','post_item'));
+
 	}
+	/** lay ra id cua user da dang nhap*/
+	// public function getUserId(){	
+	// 	$userId = Auth::user()->id;var_dump($userId);die;
+	// 	return view('frontend.layout.chotot-default', compact('userId'));
+	// }
 
 
 	/**

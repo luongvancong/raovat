@@ -89,7 +89,7 @@
                                         <div class="col-sm-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Cần bán:</span>
-                                                <input type="text" class="form-control" name="title" value="{!! Request::old('title') !!}" placeholder="Dùng tiếng việt có dấu" aria-describedby="basic-addon1">
+                                                <input type="text" class="form-control" name="title" value="{!! Request::old('title') !!}{{ $dataPostById->title }}" placeholder="Dùng tiếng việt có dấu" aria-describedby="basic-addon1">
                                             </div>
                                             {!! alertError('title') !!}
                                         </div>
@@ -97,7 +97,7 @@
                                     <div class="form-group {{ hasValidator('content') }}">
                                         <label for="Noidungtin" class="col-sm-2 control-label">Nội dung tin:</label>
                                         <div class="col-sm-6">
-                                            <textarea name="content" rows="5" class="form-control" id="Noidungtin" placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu">{!! Request::old('content') !!}</textarea>
+                                            <textarea name="content" rows="5" class="form-control" id="Noidungtin" placeholder="Điền nội dung tin chi tiết bạn muốn rao bằng tiếng việt có dấu">{!! Request::old('content') !!}{{ $dataPostById->content }}</textarea>
                                             {!! alertError('content') !!}
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                         <label for="Gia" class="col-sm-2 control-label">Giá:</label>
                                         <div class="col-sm-6">
                                             <div class="input-group">
-                                                <input type="number" class="form-control" name="price" value="{!! Request::old('price') !!}" aria-label="">
+                                                <input type="number" class="form-control" name="price" value="{!! Request::old('price') !!}{{ $dataPostById->price }}" aria-label="">
                                                 <span class="input-group-addon">đ</span>
                                             </div>
                                             {!! alertError('price') !!}
@@ -174,6 +174,10 @@
                                                         <span>Đăng hình</span>
                                                     </div>
                                                 </div> --}}
+                                                <div style="position: relative;">
+                                                    <img style="max-width: 280px;" src="{{ asset('uploads/posts/'.$dataPostById->image) }}" class="img-thumbnail">
+                                                    <a href="{{ route('deleteDetail') }}"><i style="font-size: 50px;position: absolute;color: #fff;right: 156px;top: -5px;" class="fa fa-times" aria-hidden="true"></i></a>
+                                                </div>
                                                 <div class="chon-hinh-bottom">
                                                     <p class="text-center">Đăng nhiều hình thật nhanh bằng cách kéo và thả hình vào khung này hoặc nhấn nút phía trên rồi chọn nhiều hình cùng lúc</p>
                                                 </div>
@@ -197,7 +201,7 @@
                                     <div class="form-group">
                                         <label for="Quytrinh" class="col-sm-2 control-label">Quy trình vận chuyển & giao nhận:</label>
                                         <div class="col-sm-6">
-                                            <textarea name="van_chuyen" id="Quytrinh" class="form-control" rows="5">{!! Request::old('van_chuyen') !!}</textarea>
+                                            <textarea name="van_chuyen" id="Quytrinh" class="form-control" rows="5">{!! Request::old('van_chuyen') !!}{{ $dataPostById->van_chuyen }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

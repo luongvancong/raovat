@@ -22,9 +22,10 @@
                             </div>
                             <div class="tin-dang-noi-dung">
                                 <div class="tin-dang-noi-dung-user">
-                                    <a href="" title=""><img src="{!! asset('images/icon/member1.png') !!}"></a>
-                                    <a href="" title=""><span>Lê Khang</span></a>
-                                    <a href="" title="">Xem trang cá nhân của bạn</a>
+                                    <a href="{{ route('profile.chinhsua') }}" title=""><img style="max-height: 100px" src="/uploads/users/lg_2016_09_19_f262823e75.jpg"></a>
+                                    <a href="{{ route('profile.chinhsua') }}" title=""><span>The Vinh
+                                    </span></a>
+                                    <a href="{{ route('profile.chinhsua') }}" title="">Xem trang cá nhân của bạn</a>
                                 </div>
                             </div>
                             <div class="menu-tindang">
@@ -38,7 +39,36 @@
                             </div>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="dangban">Bạn chưa có tin nào trong mục này</div>
+                                @foreach($allPost as $rowPost)
+                                <div style="background-color: #e2fbfb;width: 100%;height: 150px;margin-bottom: 5px;position: relative;" role="tabpanel" class="tab-pane active" id="dangban">
+                                    
+                                    <div>
+                                        <img style="max-height: 100px; float: left;margin-top: 26px;margin-left: 10px;" src="{{ asset('uploads/posts/'.$rowPost->image) }}">
+                                        <a href="#"><h4 style="float: left;margin: 24px 14px;">{{ $rowPost->title }}</h4></a>
+                                        <div style="position: absolute;top: 85px;left: 185px;color: #6a59c1;">
+                                            <p>Ngay Dang</p>
+                                            <p>{{ $rowPost->created_at }}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div style="position: absolute;top: 20px;left: 672px;" class="btn-group">
+                                        <button type="button" data-toggle="dropdown">
+                                          <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li style="margin-left: 25px;" ><a href="{{ route('suatin',[$rowPost->id]) }}"><i style="margin-right: 17px" class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</a></li>
+                                          <li style="margin-left: 25px;"><a onclick="return confirmDelete('Ban co chac chan muon xoa khong')" href="{{ route('xoatin',[$rowPost->id]) }}"><i style="margin-right: 17px" class="fa fa-trash" aria-hidden="true"></i>Delete</a></li>
+                                          <li style="margin-left: 25px;"><a href="{{ route('chiasetin',[$rowPost->id]) }}"><i style="margin-right: 17px" class="fa fa-share-alt-square" aria-hidden="true"></i>Share</a></li>
+                                          <li style="margin-left: 25px;"><a href="{{ route('antin',[$rowPost->id]) }}"><i style="margin-right: 17px" class="fa fa-ban" aria-hidden="true"></i>Hidden</a></li>
+                                        </ul>
+                                    </div>
+                                    <div style="position: absolute;top: 96px;left: 576px;" class="btn-group">
+                                      <button style="background-color: #578e2d;" type="button" class="btn btn-default"><i style="color: #fff;"class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                                      <button style="background-color: #578e2d;" type="button" class="btn btn-default">Day Tin</button>
+                                    </div>
+                                   
+                                </div>
+                                @endforeach
                                 <div role="tabpanel" class="tab-pane" id="doiduyet">Bạn chưa có tin nào trong mục này</div>
                                 <div role="tabpanel" class="tab-pane" id="bituchoi">Bạn chưa có tin nào trong mục này</div>
                                 <div role="tabpanel" class="tab-pane" id="daan">...</div>

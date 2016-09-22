@@ -72,4 +72,13 @@ interface PostRepository
     public function countPostByDateRange($startDate, $endDate);
 
     public function getIdCurrent($data);
+
+    /**
+     * load ra tat ca tin da dang
+     * @param  id cua user
+     * @return array
+     */
+    public function getAllPostUserById($userId);
+
+    public function getFistById($id);
 }
